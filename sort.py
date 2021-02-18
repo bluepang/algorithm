@@ -48,8 +48,25 @@ class Sort(object):
 
         return new_list
 
+    # 插入排序
+    @staticmethod
+    @print_exce_time
+    def insert_sort(list_old):
+        n = len(list_old)
+        for i in range(1, n):
+            value = list_old[i]
+            j = i - 1
+            while j >= 0:
+                if list_old[j] > value:
+                    list_old[j+1] = list_old[j]
+                else:
+                    break
+                j -= 1
+            list_old[j+1] = value
+        return list_old
+
 
 if __name__ == '__main__':
     list1 = [64, 34, 25, 12, 22, 11, 90]
     print('old list is {}'.format(list1))
-    print('new list is: {}'.format(Sort.select_sort(list1)))
+    print('new list is: {}'.format(Sort.insert_sort(list1)))
