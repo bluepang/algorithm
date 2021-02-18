@@ -27,8 +27,29 @@ class Sort(object):
             high = [item for item in list_old if item > pivot]
             return Sort.quick_sort(low) + [pivot] + Sort.quick_sort(high)
 
+    # 选择排序
+    @staticmethod
+    @print_exce_time
+    def select_sort(list_old):
+        new_list = []
+
+        def find_min_index(list_source):
+            min_index_inner = 0
+            n = len(list_source)
+            for i in range(n):
+                if list_source[i] < list_source[min_index_inner]:
+                    min_index_inner = i
+            return min_index_inner
+
+        for i in range(len(list_old)):
+            min_index = find_min_index(list_old)
+            min_item = list_old.pop(min_index)
+            new_list.append(min_item)
+
+        return new_list
+
 
 if __name__ == '__main__':
-    list_source = [64, 34, 25, 12, 22, 11, 90]
-    print('old list is {}'.format(list_source))
-    print('new list is: {}'.format(Sort.quick_sort(list_source)))
+    list1 = [64, 34, 25, 12, 22, 11, 90]
+    print('old list is {}'.format(list1))
+    print('new list is: {}'.format(Sort.select_sort(list1)))
